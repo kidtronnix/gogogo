@@ -32,10 +32,10 @@ func main() {
   r := gogogo.NewRouter()
 
   // let's add a create handler for our resource
-  r.Handle("/resource/", http.HandleFunc(create), "POST")
+  r.Handle("/resource/", http.HandlerFunc(create), "POST")
 
   // you can add multiple methods to a handler
-  r.Handle("/resource/:id", http.HandleFunc(id), "GET", "PUT", "DELETE")
+  r.Handle("/resource/:id", http.HandlerFunc(id), "GET", "PUT", "DELETE")
 
   http.ListenAndServe(":8000", r)
 }
