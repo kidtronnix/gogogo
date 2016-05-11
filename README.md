@@ -4,7 +4,7 @@ fast and simple http routing. written in go.
 
 ## About
 
-At it's core *gogogo* is a simple and scalable http router.
+At it's core *gogogo* is a fast simple http router.
 It matches requests to handlers by using a Trie data structure.
 Typically this approach scales well.
 

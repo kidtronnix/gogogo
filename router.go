@@ -13,7 +13,6 @@ func NewRouter() *Router {
 type Router struct {
 	tree            *node
 	NotFoundHandler http.Handler
-	// Middleware      http.Handler
 }
 
 func (r *Router) Handle(path string, handler http.Handler, methods ...string) {
