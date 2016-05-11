@@ -2,6 +2,8 @@
 
 fast and simple http routing. written in go.
 
+[![Build Status](https://travis-ci.org/smaxwellstewart/gogogo.svg?branch=master)](https://travis-ci.org/smaxwellstewart/gogogo)
+
 ## About
 
 
