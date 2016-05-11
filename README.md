@@ -16,14 +16,13 @@ As a bonus, *gogogo* will parse url params as it routes requests.
 ## Usage
 
 ```go
-func id(w http.ResponseWriter, req *http.Request) {
-  // get url param ':id'
-  id := req.FormValue("id")
-  // switch case for different methods, blah blah
+func createHandler(w http.ResponseWriter, req *http.Request) {
+  // ...
 }
 
-func create(w http.ResponseWriter, req *http.Request) {
-  // ...
+func idHandler(w http.ResponseWriter, req *http.Request) {
+  id := req.FormValue("id")
+  // get :id url param then ...
 }
 
 func main() {
@@ -32,10 +31,10 @@ func main() {
   r := gogogo.NewRouter()
 
   // let's add a create handler for our resource
-  r.Handle("/resource/", http.HandlerFunc(create), "POST")
+  r.Handle("/resources/", http.HandlerFunc(createHanlder), "POST")
 
   // you can add multiple methods to a handler
-  r.Handle("/resource/:id", http.HandlerFunc(id), "GET", "PUT", "DELETE")
+  r.Handle("/resources/:id", http.HandlerFunc(idHandler), "GET", "PUT", "DELETE")
 
   http.ListenAndServe(":8000", r)
 }
