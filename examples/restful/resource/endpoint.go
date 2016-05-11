@@ -7,14 +7,14 @@ type Endpoint struct{}
 
 func (e Endpoint) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-	case http.MethodPost:
+	case "POST":
 		e.post(w, r)
-	case http.MethodGet:
+	case "GET":
 		e.get(w, r)
-	case http.MethodPut:
+	case "PUT":
 		// put specific methood middleware here...
 		e.put(w, r)
-	case http.MethodDelete:
+	case "DELETE":
 		e.delete(w, r)
 	}
 }
