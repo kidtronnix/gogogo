@@ -4,6 +4,7 @@ fast and simple http routing. written in go.
 
 ## About
 
+
 At it's core *gogogo* is a fast simple http router.
 It matches requests to handlers by using a Trie data structure.
 Typically this approach scales well.
@@ -26,15 +27,21 @@ func create(w http.ResponseWriter, req *http.Request) {
 func main() {
 
   // create router instance
-	r := gogogo.NewRouter()
+  r := gogogo.NewRouter()
 
   // let's add a create handler for our resource
   r.Handle("/resource/", http.HandleFunc(create), "POST")
 
   // you can add multiple methods to a handler
-	r.Handle("/resource/:id", http.HandleFunc(id), "GET", "PUT", "DELETE")
+  r.Handle("/resource/:id", http.HandleFunc(id), "GET", "PUT", "DELETE")
 
-	http.ListenAndServe(":8000", r)
+  http.ListenAndServe(":8000", r)
 }
 
 ```
+
+# Credits
+
+Great explanation of how trie data structure works in golang.
+
+http://vluxe.io/golang-router.html
