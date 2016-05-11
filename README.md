@@ -10,6 +10,10 @@ Typically this approach scales well.
 
 As a bonus, *gogogo* will parse url params as it routes requests.
 
+# Credits
+
+http://vluxe.io/golang-router.html
+
 ## Usage
 
 ```go
