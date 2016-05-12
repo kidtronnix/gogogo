@@ -43,34 +43,35 @@ func TestNewRouter(t *testing.T) {
 func TestRouterCorrectlyRoutes(t *testing.T) {
 	assert := assert.New(t)
 
+	// setup our router
 	r := NewRouter()
-
 	r.Handle("/", http.HandlerFunc(root), "GET")
 	r.Handle("/resources/", http.HandlerFunc(index), "GET")
 	r.Handle("/resources/:id", http.HandlerFunc(update), "PUT", "PATCH")
 
+	// test root
 	w := httptest.NewRecorder()
 	req, _ := http.NewRequest("GET", "http://example.com/", nil)
 	r.ServeHTTP(w, req)
 	assert.Equal("root", w.Body.String())
 
+	// test index
 	w = httptest.NewRecorder()
 	req, _ = http.NewRequest("GET", "http://example.com/resources/", nil)
 	r.ServeHTTP(w, req)
 	assert.Equal("index", w.Body.String())
 
+	// test id route
 	w = httptest.NewRecorder()
 	req, _ = http.NewRequest("PUT", "http://example.com/resources/1", nil)
 	r.ServeHTTP(w, req)
 	assert.Equal("update PUT", w.Body.String())
-
 }
 
 func TestRouterParsesURLParams(t *testing.T) {
 	assert := assert.New(t)
 
 	r := NewRouter()
-
 	r.Handle("/:id", http.HandlerFunc(root), "GET")
 
 	w := httptest.NewRecorder()

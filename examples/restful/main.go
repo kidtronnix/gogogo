@@ -9,7 +9,6 @@ import (
 
 func main() {
 	r := gogogo.NewRouter()
-
 	r.Handle("/resources/", resource.Endpoint{}, "POST")
 	r.Handle("/resources/:id", resource.Endpoint{}, "GET", "PUT", "DELETE")
 
