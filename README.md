@@ -13,6 +13,8 @@ Typically this approach scales well.
 
 As a bonus, *gogogo* will parse url params as it routes requests.
 
+Best of all *gogogo* let's you keep your standard http handlers! 
+
 ## Usage
 
 ```go
@@ -43,6 +45,6 @@ func main() {
 
 # Credits
 
-Great explanation of how trie data structure works in golang.
+Great explanation of how to use a trie data structure to write a router in golang.
 
 http://vluxe.io/golang-router.html
