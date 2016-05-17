@@ -24,6 +24,10 @@ func (r *Router) Handle(path string, handler http.Handler, methods ...string) {
 	}
 }
 
+func (r *Router) HandleFunc(path string, handler func(http.ResponseWriter, *http.Request), methods ...string) {
+	r.Handle(path, http.HandlerFunc(handler), methods...)
+}
+
 func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	node, _ := r.tree.traverse(strings.Split(req.URL.Path, "/")[1:], req)

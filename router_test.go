@@ -46,7 +46,7 @@ func TestRouterCorrectlyRoutes(t *testing.T) {
 	// setup our router
 	r := NewRouter()
 	r.Handle("/", http.HandlerFunc(root), "GET")
-	r.Handle("/resources/", http.HandlerFunc(index), "GET")
+	r.HandleFunc("/resources/", index, "GET")
 	r.Handle("/resources/:id", http.HandlerFunc(update), "PUT", "PATCH")
 
 	// test root
