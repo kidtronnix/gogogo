@@ -9,6 +9,7 @@ type node struct {
 	children     []*node
 	component    string
 	isNamedParam bool
+	muxHandler   http.Handler
 	methods      map[string]http.Handler
 }
 
@@ -23,7 +24,11 @@ func (n *node) addNode(method, path string, handler http.Handler) {
 
 		aNode, component := n.traverse(components, nil)
 		if aNode.component == component && count == 1 { // update an existing node.
-			aNode.methods[method] = handler
+			if method == "mux" {
+				aNode.muxHandler = handler
+			} else {
+				aNode.methods[method] = handler
+			}
 			return
 		}
 		newNode := node{component: component, isNamedParam: false, methods: make(map[string]http.Handler)}
@@ -32,7 +37,12 @@ func (n *node) addNode(method, path string, handler http.Handler) {
 			newNode.isNamedParam = true
 		}
 		if count == 1 { // this is the last component of the url resource, so it gets the handler.
-			newNode.methods[method] = handler
+			if method == "mux" {
+				newNode.muxHandler = handler
+			} else {
+				newNode.methods[method] = handler
+			}
+
 		}
 		aNode.children = append(aNode.children, &newNode)
 
